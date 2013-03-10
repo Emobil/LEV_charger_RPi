@@ -71,23 +71,23 @@ int main( int argc, char *argv[] ) {
 
 	i2c_read(SLAVE_ADDRESS , I2C_BUFFER_SIZE , buffer);
 
-	u1 = ((float)(( buffer[0] << 8 ) | buffer[1]) / 4096.0) ;//* 130000.0 / 1740.0;
-	printf("U_Bat: %.03f V\n",u1);
+//	u1 = ((float)(( buffer[0] << 8 ) | buffer[1]) / 4096.0) ;//* 130000.0 / 1740.0;
+//	printf("U_Bat: %.03f V\n",u1);
 
 //	int u11 = ((( buffer[0] << 8 ) | buffer[1]));// * 130000.0 / 1740.0;
 //	printf("U_Bat: %u V\n",u11);
 
 
-	u2 = (float)((buffer[2] << 8 ) | buffer[3]) / 4096.0;
-	printf("I_Bat: %.03f A\n\n",u2);
+//	u2 = (float)((buffer[2] << 8 ) | buffer[3]) / 4096.0;
+//	printf("I_Bat: %.03f A\n\n",u2);
 
-	u3 = ((float)((buffer[4] << 8 ) | buffer[5]) / 4096.0) * (130.0 / 1.74);
+	u3 = ((float)(((buffer[4] << 8 ) | buffer[5]) / 4096.0) * (130.0 / 1.74) - 3.8);
 	printf(" U_PV: %.03f V\n",u3);
 
-	u4 = (float)((buffer[6] << 8 ) | buffer[7]) / 4096.0;
+	u4 =  (float)(((buffer[6] << 8 ) | buffer[7]) / ( 4096.0 * 0.02 * (1 + 22000.0 / 4700.0) ) - 1.3);
 	printf(" I_PV: %.03f A\n",u4);
 
-	printf("\n");	
+//	printf("\n");	
 	sleep(1);
 
 }
