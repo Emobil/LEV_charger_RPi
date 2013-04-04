@@ -81,10 +81,10 @@ int main( int argc, char *argv[] ) {
 //	u2 = (float)((buffer[2] << 8 ) | buffer[3]) / 4096.0;
 //	printf("I_Bat: %.03f A\n\n",u2);
 
-	u3 = ((float)(((buffer[4] << 8 ) | buffer[5]) / 4096.0) * (130.0 / 1.74) - 3.8);
+	u3 = ((float)(((buffer[4] << 8 ) | buffer[5]) / 2048.0) );//* (130.0 / 1.74));// - 3.8);
 	printf(" U_PV: %.03f V\n",u3);
 
-	u4 =  (float)(((buffer[6] << 8 ) | buffer[7]) / ( 4096.0 * 0.02 * (1 + 22000.0 / 4700.0) ) - 1.3);
+	u4 =  (float)(((buffer[6] << 8 ) | buffer[7]) / 2048.0) ;//( 4096.0 * 0.02 * (1 + 22000.0 / 4700.0) ) - 1.3);
 	printf(" I_PV: %.03f A\n",u4);
 
 //	printf("\n");	
